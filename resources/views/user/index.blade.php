@@ -8,6 +8,16 @@
 
     </div>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" arial-label="close">
+                <span aria-hidden="true">x</span>
+            </button>
+            <h6><i class="fas fa-check"></i><b>Success!</b></h6>
+            {{ session('success')}}!
+        </div>
+    @endif
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -21,6 +31,7 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -29,18 +40,22 @@
                             <th>No.</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->user_role($user->id)->role->nama_role }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i> Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-trash"></i> Delete</a>
+                                    <a href="{{ route('user.delete', $user->id) }}"
+                                        onclick="return confirm('Anda ingin menghapus user ini?')"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="fas fa-fw fa-trash"></i> Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -49,4 +64,5 @@
             </div>
         </div>
     </div>
+
 @endsection

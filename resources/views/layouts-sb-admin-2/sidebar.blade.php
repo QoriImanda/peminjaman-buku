@@ -1,3 +1,10 @@
+<?php 
+use App\Models\UserRole;
+
+    $user_role = UserRole::where('user_id', auth()->user()->id)->first();
+    // dd($user_role->role->nama_role);
+?>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -13,7 +20,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item @yield('dashboard-active')">
-        <a class="nav-link" href="{{route('dashboard')}}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -49,8 +56,7 @@
             <i class="fas fa-fw fa-wrench"></i>
             <span>Utilities</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
                 <a class="collapse-item" href="utilities-color.html">Colors</a>
@@ -98,11 +104,14 @@
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item @yield('users-active')">
-        <a class="nav-link" href="{{route('user.index')}}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>User</span></a>
-    </li>
+    @if ($user_role->role->nama_role == 'Admin')
+        <li class="nav-item @yield('users-active')">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>User</span></a>
+        </li>
+    @endif
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -114,7 +123,7 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="{{('sb-admin-2/img/undraw_rocket.svg')}}" alt="...">
+        <img class="sidebar-card-illustration mb-2" src="{{ 'sb-admin-2/img/undraw_rocket.svg' }}" alt="...">
         <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
             and more!</p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
