@@ -15,4 +15,9 @@ class ListBuku extends Model
         'judul_buku',
         'pengarang',
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriBuku::class);
+    }
 }

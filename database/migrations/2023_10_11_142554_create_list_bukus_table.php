@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('kode_buku')->unique();
             $table->string('judul_buku');
             $table->string('pengarang');
+            $table->string('foto');
+
             $table->foreign('kategori_id')
-            ->references('id')->on('kategori_bukus')
-            ->onUpdate('restrict')->onDelete('restrict');
+                ->references('id')->on('kategori_bukus')
+                ->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
         });
     }

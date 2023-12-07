@@ -11,6 +11,7 @@
 
     <title>Peminjaman Buku | @yield('title')</title>
 
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/sb-admin-2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
