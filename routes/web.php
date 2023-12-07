@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MasterData\KategoriController;
+use App\Http\Controllers\MasterData\ListBukuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +24,28 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
+
+    //// Master Data
+    //kategori
+    Route::get('/master-data/kategori/index', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::post('/master-data/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::post('/master-data/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::get('/master-data/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+
+    //list buku
+    Route::get('/master-data/list-buku/index', [ListBukuController::class, 'index'])->name('listBuku.index');
+    Route::post('/master-data/list-buku/store', [ListBukuController::class, 'store'])->name('listBuku.store');
+    Route::post('/master-data/list-buku/update/{id}', [ListBukuController::class, 'update'])->name('listBuku.update');
+    Route::get('/master-data/list-buku/delete/{id}', [ListBukuController::class, 'delete'])->name('listBuku.delete');
+
+
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
