@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\MasterData\KategoriController;
 use App\Http\Controllers\MasterData\ListBukuController;
+use App\Http\Controllers\PinjamBukuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +26,13 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
+    ////Buku 
+    Route::get('/buku/index', [BukuController::class, 'index'])->name('buku.index');
+
+    /// Peminjaman
+    Route::get('/peminjama/index', [PinjamBukuController::class, 'index'])->name('pinjamBuku.index');
+    Route::get('/peminjama/buku/{id}', [PinjamBukuController::class, 'pinjamBuku'])->name('pinjamBuku');
+    
 
     //// Master Data
     //kategori
