@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('list_bukus', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->unsignedInteger('kategori_id');
             $table->string('kode_buku')->unique();
             $table->string('judul_buku');

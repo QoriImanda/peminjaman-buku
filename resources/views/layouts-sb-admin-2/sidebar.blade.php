@@ -25,9 +25,22 @@ use App\Models\UserRole;
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    <li class="nav-item @yield('buku-active')">
+        <a class="nav-link" href="{{route('buku.index')}}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Buku</span></a>
+    </li>
 
+    <li class="nav-item @yield('peminjaman-active')">
+        <a class="nav-link" href="{{route('pinjamBuku.index')}}">
+            <i class="fas fa-fw fa-bookmark"></i>
+            <span>Peminjaman</span></a>
+    </li>
+
+    <!-- Divider -->
+    
+    @if ($user_role->role->nama_role == 'Admin')
+    <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
         Interface
@@ -59,7 +72,7 @@ use App\Models\UserRole;
 
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Tables -->
-    @if ($user_role->role->nama_role == 'Admin')
+    
         <li class="nav-item @yield('users-active')">
             <a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fas fa-fw fa-user"></i>
@@ -75,16 +88,5 @@ use App\Models\UserRole;
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
-
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="{{ asset('/sb-admin-2/img/undraw_rocket.svg') }}" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-            and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-            Pro!</a>
-    </div>
-
 
 </ul>

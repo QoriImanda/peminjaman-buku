@@ -110,6 +110,8 @@
     <script src="{{ asset('/sb-admin-2/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('/sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
 
+    @yield('script')
+
 </body>
 
 </html>

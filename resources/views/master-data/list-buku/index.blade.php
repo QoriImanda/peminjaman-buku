@@ -75,7 +75,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$listBuku->kode_buku}}</td>
                                 <td>
-                                    <img style="height: 100px; width: 80px" src="{{ asset('/storage/'. $listBuku->foto)}}" alt="">
+                                    <img style="height: 100px; width: 80px" src="{{ asset('/storage/'. $listBuku->foto)}}" alt="Gambar">
                                 </td>
                                 <td>{{$listBuku->judul_buku}}</td>
                                 <td>{{$listBuku->pengarang}}</td>
